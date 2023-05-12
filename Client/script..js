@@ -3,7 +3,6 @@ window.onload = getAll();
 window.addEventListener("",()=>getAll())
 let btn = document.getElementById('form-btn');
 let form = document.getElementById('cus-form');
-let uniqueUserId;
 
 
 form.addEventListener("keyup", (() => {
@@ -22,7 +21,7 @@ function validation() {
     if ((data['name'] == '' || data['name'] == null) || (data['email'] == '' || data['email'] == null) || (data['message'] == '' || data['message'] == null) || (data['summary'] == '' || data['summary'] == null)) {
         document.getElementById('error').style.display = "block";
     } else {
-        btn.textContent == "Add User" ? addUser(data) : updateUser(data);
+        btn.getAttribute('action') == "create" ? addUser(data) : updateUser(data);
         form.reset();
     }
 }
@@ -106,9 +105,9 @@ function deleteUser(userId) {
 
 function getFormdata(userId) {
 
+    btn.setAttribute('user-Id',userId)
+    btn.setAttribute('action','update')
 
-    uniqueUserId = userId;
-    console.log(userId)
 
     fetch(`http://localhost:3000/getuser/${userId}`)
         .then((res) => res.json())
@@ -128,7 +127,7 @@ function updateUser(formData) {
         email: formData['email'],
         message: formData['message'],
         summary: formData['summary'],
-        id: uniqueUserId,
+        id: btn.getAttribute('user-Id'),
     }
 
     fetch('http://localhost:3000/update', {
@@ -145,10 +144,8 @@ function updateUser(formData) {
         .then((data) => {
             console.log(data);
             getAll();
-            document.getElementById('form-btn').textContent = "Submit";
+            btn.textContent = "Submit";
+            btn.setAttribute('action','update');
 
         })
 }
-
-
-
