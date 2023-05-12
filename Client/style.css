@@ -1,0 +1,56 @@
+body{
+    padding: 0;
+    margin: 0
+}
+main{
+    height: 100vh;
+}
+
+.form-div,.table-div{
+    height: 100vh;
+}
+
+.form-div{
+    background-color: rgb(235,235,235);
+}
+.table-div{
+    padding: 0px 50px;
+    overflow-y: scroll;
+}
+
+
+
+
+.actions{
+    color: blueviolet;
+}
+
+/* #table-head{
+    position:;
+} */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 50px;
+}
+thead {
+    position: sticky;
+    top: 0;
+  }
+
+#error{
+    color: red;
+    margin-left: 30px;
+    display: none;
+}
+
+.btn-div{
+    margin-top: 30px;
+}
+#cus-form{
+    margin-top: 50px;
+}
+tr:nth-child(even){
+    background-color: #F6F6F6;
+}
